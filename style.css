@@ -1,0 +1,109 @@
+:root {
+  --page: #dde6e9;
+  --body: #1f3a44;
+  --lcd: #cde5d2;
+  --lcd-ink: #14302a;
+  --lcd-dim: #4d6b60;
+  --lcd-err: #8a2b1f;
+  --key: #2d5260;
+  --key-fn: #3f6a7b;
+  --amber: #e8b04a;
+  --amber-ink: #2b1d05;
+  --key-ink: #f1f6f7;
+  --shadow: #14272e;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html, body { height: 100%; }
+
+body {
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: var(--page);
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.calc {
+  width: min(100%, 340px);
+  padding: 18px;
+  border-radius: 22px;
+  background: var(--body);
+  box-shadow: 0 6px 0 var(--shadow), 0 18px 32px rgba(20, 39, 46, .28);
+}
+
+.screen {
+  min-height: 116px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  background: var(--lcd);
+  color: var(--lcd-ink);
+  box-shadow: inset 0 3px 6px rgba(20, 48, 42, .3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.preview {
+  min-height: 1.4em;
+  font-size: .95rem;
+  text-align: right;
+  color: var(--lcd-dim);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.expr {
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: right;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  font-variant-numeric: tabular-nums;
+}
+.expr::-webkit-scrollbar { display: none; }
+.expr.md  { font-size: 1.6rem; }
+.expr.sm  { font-size: 1.2rem; }
+.expr.err { font-size: 1.15rem; color: var(--lcd-err); }
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  height: 56px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--key);
+  color: var(--key-ink);
+  font: inherit;
+  font-size: 1.25rem;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  box-shadow: 0 3px 0 var(--shadow);
+  transition: transform .06s, box-shadow .06s;
+}
+button:active { transform: translateY(3px); box-shadow: 0 0 0 var(--shadow); }
+button:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+button.fn { background: var(--key-fn); }
+button.op { background: var(--amber); color: var(--amber-ink); font-size: 1.5rem; }
+
+.hint {
+  margin-top: 14px;
+  font-size: .78rem;
+  line-height: 1.4;
+  text-align: center;
+  color: #9fb8c0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button { transition: none; }
+}
